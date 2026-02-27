@@ -1,0 +1,25 @@
+name: Birthday Mail Sender
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # Thailand 9AM (UTC+7)
+  workflow_dispatch:
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: pip install pandas
+
+      - name: Run Script
+        run: python main.py
