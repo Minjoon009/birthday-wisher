@@ -2,9 +2,10 @@ import random
 import pandas
 import smtplib
 import datetime as dt
+import os
 
-MY_EMAIL = "aungheinhtetahhj2@gmail.com"
-PASSWORD = "rtwr pngn hzoh npgw"
+MY_EMAIL = os.environ["EMAIL"]
+PASSWORD = os.environ["PASSWORD"]
 today = dt.datetime.now()
 today_tuple = (today.month,today.day)
 
@@ -27,3 +28,4 @@ if today_tuple in birthday_dict:
         contents = letter_file.read()
         contents =  contents.replace("[NAME]",birthday_person["name"])
     send_email(birthday_person["email"],contents)
+
