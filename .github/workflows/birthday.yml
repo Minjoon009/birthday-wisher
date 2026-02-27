@@ -2,7 +2,7 @@ name: Birthday Mail Sender
 
 on:
   schedule:
-    - cron: '0 2 * * *'   # Thailand 9AM (UTC+7)
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
@@ -22,4 +22,7 @@ jobs:
         run: pip install pandas
 
       - name: Run Script
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: python main.py
